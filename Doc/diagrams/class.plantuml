@@ -1,5 +1,4 @@
 @startuml astarun
-
 skinparam class {
 	BackgroundColor white
 	ArrowColor black
@@ -28,37 +27,39 @@ class Personnage {
 	- mod
 }
 
-class Stat {
+class Race {
 	+ nom
-	+ valeur
 	+ rBonus
-	+ dBonus
-	+ sBonus
-	- total
-	- mod
-	- points
+	+ uniqueSkill
 }
+together {
+	class Stat {
+		+ nom
+		+ valeur
+		+ rBonus
+		+ dBonus
+		+ sBonus
+		- total
+		- mod
+		- points
+	}
 
-class Resistance {
-	+ elem
-	+ valeur
-	+ niveau
-	+ bonus
-	- total
-	- points 
-}
+	class Resistance {
+		+ elem
+		+ valeur
+		+ niveau
+		+ bonus
+		- total
+		- points 
+	}
 
-class Jauge {
-	+ nom
-	+ valeur
-	+ bonus
-	- total
-	- points
-}
-
-class Langue {
-	+ nom
-	+ points
+	class Jauge {
+		+ nom
+		+ valeur
+		+ bonus
+		- total
+		- points
+	}
 }
 
 abstract class Connaissances {
@@ -67,28 +68,35 @@ abstract class Connaissances {
 	+ description
 	- points
 }
+package "" as pckgConn <<Rectangle>> {
+	
+	class Langue {
+		+ nom
+		+ points
+	}
 
-class Competence {
-	+ bPalier
-	- mod
-	- total
-	- calcPoints()
-}
+	class Competence {
+		+ bPalier
+		- mod
+		- total
+		- calcPoints()
+	}
 
-class Stances {
-	+ modAtk
-	+ crit
-	+ modCrit
-	- calcPoints()
-}
+	class Stances {
+		+ modAtk
+		+ crit
+		+ modCrit
+		- calcPoints()
+	}
 
-class Metier {
-	- calcPoints()
-}
+	class Metier {
+		- calcPoints()
+	}
 
-class Magie {
-	+ elem
-	- calcPoints()
+	class Magie {
+		+ elem
+		- calcPoints()
+	}
 }
 ' 
 ' db      d888888b d88888b d8b   db .d8888. 
@@ -157,12 +165,11 @@ Cast "*" o-- "*" Joueur
 '  `Y88P'  `Y88P'  VP   V8P VP   V8P YP   YP Y888888P `8888Y' `8888Y' YP   YP VP   V8P  `Y88P' Y88888P `8888Y'         YP     `Y88P'       8' V `8 
 '                                                                                                                                                  
 '                                                                                                                                                  
-' 
-Connaissances ^-- Competence
-Connaissances ^-- Stances
-Connaissances ^-- Metier
-Connaissances ^-- Magie
-Connaissances ^-- Langue
+'
+Connaissances ^-- pckgConn
+
+Competence "*" o-- "0..2" Stat
+
 ' 
 ' d8888b. d88888b d8888b. .d8888.  .d88b.  d8b   db d8b   db  .d8b.   d888b  d88888b      d888888b  .d88b.               
 ' 88  `8D 88'     88  `8D 88'  YP .8P  Y8. 888o  88 888o  88 d8' `8b 88' Y8b 88'          `~~88~~' .8P  Y8.      8. A .8 
@@ -175,6 +182,22 @@ Connaissances ^-- Langue
 ' 
 Personnage "*" o-- "6" Stat 
 Personnage "*" o-- "4" Jauge 
-Personnage "*" o-- "7" Stat 
+Personnage "*" o-- "7" Resistance
+Personnage "*" -- "1" Race
+' 
+' d8888b. d88888b d8888b. .d8888.  .d88b.  d8b   db d8b   db  .d8b.   d888b  d88888b      d888888b  .d88b.        .o88b.  .d88b.  d8b   db d8b   db  .d8b.  d888888b .d8888. .d8888.  .d8b.  d8b   db  .o88b. d88888b .d8888. 
+' 88  `8D 88'     88  `8D 88'  YP .8P  Y8. 888o  88 888o  88 d8' `8b 88' Y8b 88'          `~~88~~' .8P  Y8.      d8P  Y8 .8P  Y8. 888o  88 888o  88 d8' `8b   `88'   88'  YP 88'  YP d8' `8b 888o  88 d8P  Y8 88'     88'  YP 
+' 88oodD' 88ooooo 88oobY' `8bo.   88    88 88V8o 88 88V8o 88 88ooo88 88      88ooooo         88    88    88      8P      88    88 88V8o 88 88V8o 88 88ooo88    88    `8bo.   `8bo.   88ooo88 88V8o 88 8P      88ooooo `8bo.   
+' 88~~~   88~~~~~ 88`8b     `Y8b. 88    88 88 V8o88 88 V8o88 88~~~88 88  ooo 88~~~~~         88    88    88      8b      88    88 88 V8o88 88 V8o88 88~~~88    88      `Y8b.   `Y8b. 88~~~88 88 V8o88 8b      88~~~~~   `Y8b. 
+' 88      88.     88 `88. db   8D `8b  d8' 88  V888 88  V888 88   88 88. ~8~ 88.             88    `8b  d8'      Y8b  d8 `8b  d8' 88  V888 88  V888 88   88   .88.   db   8D db   8D 88   88 88  V888 Y8b  d8 88.     db   8D 
+' 88      Y88888P 88   YD `8888Y'  `Y88P'  VP   V8P VP   V8P YP   YP  Y888P  Y88888P         YP     `Y88P'        `Y88P'  `Y88P'  VP   V8P VP   V8P YP   YP Y888888P `8888Y' `8888Y' YP   YP VP   V8P  `Y88P' Y88888P `8888Y' 
+'                                                                                                                                                                                                                             
+'                                                                                                                                                                                                                             
+' 
+Personnage "*" o-- "1..*" Langue
+Personnage "*" o-- "*" Competence
+Personnage "*" o-- "*" Metier
+Personnage "*" o-- "*" Stances
+Personnage "*" o-- "*" Magie
 
 @enduml
