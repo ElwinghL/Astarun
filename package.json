@@ -4,7 +4,8 @@
   "description": "RPG",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate-docs": "node_modules/.bin/jsdoc -c jsdoc.json"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,10 @@
   },
   "homepage": "https://github.com/ElwinghL/Astarun#readme",
   "dependencies": {
+    "docdash": "^1.1.1",
     "node-plantuml": "^0.8.1"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.6.2"
   }
 }
