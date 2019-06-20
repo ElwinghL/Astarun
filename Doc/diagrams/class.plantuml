@@ -121,6 +121,7 @@ package "" as pckgConn <<Rectangle>> {
 
 Humain ^-- Joueur
 Humain ^-- MaitreDuJeu
+Humain "1" o-- "*" Personnage
 ' 
 '    d88b  .d88b.  db    db d88888b db    db d8888b.      d888888b  .d88b.               
 '    `8P' .8P  Y8. 88    88 88'     88    88 88  `8D      `~~88~~' .8P  Y8.      8. A .8 
@@ -132,7 +133,6 @@ Humain ^-- MaitreDuJeu
 '                                                                                        
 ' 
 
-Joueur "1" o-- "*" Personnage
 ' 
 ' .88b  d88.  .d8b.  d888888b d888888b d8888b. d88888b d8888b. db    db    d88b d88888b db    db      d888888b  .d88b.               
 ' 88'YbdP`88 d8' `8b   `88'   `~~88~~' 88  `8D 88'     88  `8D 88    88    `8P' 88'     88    88      `~~88~~' .8P  Y8.      8. A .8 
@@ -144,7 +144,6 @@ Joueur "1" o-- "*" Personnage
 '                                                                                                                                    
 ' 
 MaitreDuJeu "1" o-- "*" Cast
-MaitreDuJeu "1" o-- "*" Personnage
 ' 
 '  .o88b.  .d8b.  .d8888. d888888b      d888888b  .d88b.               
 ' d8P  Y8 d8' `8b 88'  YP `~~88~~'      `~~88~~' .8P  Y8.      8. A .8 
