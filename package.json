@@ -1,0 +1,22 @@
+{
+  "name": "astarun",
+  "version": "1.0.0",
+  "description": "RPG",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElwinghL/Astarun.git"
+  },
+  "author": "ElwinghL",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ElwinghL/Astarun/issues"
+  },
+  "homepage": "https://github.com/ElwinghL/Astarun#readme",
+  "dependencies": {
+    "node-plantuml": "^0.8.1"
+  }
+}

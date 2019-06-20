@@ -1,0 +1,180 @@
+@startuml astarun
+
+skinparam class {
+	BackgroundColor white
+	ArrowColor black
+	BorderColor gray
+}
+
+abstract class Humain {
+	+ nom
+	+ prenom
+	+ id
+}
+
+class MaitreDuJeu {
+}
+
+class Joueur {
+}
+
+class Cast {
+	+ nom
+}
+
+class Personnage {
+	+ nom
+	+ taille
+	- mod
+}
+
+class Stat {
+	+ nom
+	+ valeur
+	+ rBonus
+	+ dBonus
+	+ sBonus
+	- total
+	- mod
+	- points
+}
+
+class Resistance {
+	+ elem
+	+ valeur
+	+ niveau
+	+ bonus
+	- total
+	- points 
+}
+
+class Jauge {
+	+ nom
+	+ valeur
+	+ bonus
+	- total
+	- points
+}
+
+class Langue {
+	+ nom
+	+ points
+}
+
+abstract class Connaissances {
+	+ nom
+	+ niveau
+	+ description
+	- points
+}
+
+class Competence {
+	+ bPalier
+	- mod
+	- total
+	- calcPoints()
+}
+
+class Stances {
+	+ modAtk
+	+ crit
+	+ modCrit
+	- calcPoints()
+}
+
+class Metier {
+	- calcPoints()
+}
+
+class Magie {
+	+ elem
+	- calcPoints()
+}
+' 
+' db      d888888b d88888b d8b   db .d8888. 
+' 88        `88'   88'     888o  88 88'  YP 
+' 88         88    88ooooo 88V8o 88 `8bo.   
+' 88         88    88~~~~~ 88 V8o88   `Y8b. 
+' 88booo.   .88.   88.     88  V888 db   8D 
+' Y88888P Y888888P Y88888P VP   V8P `8888Y' 
+'                                           
+'                                           
+' 
+' 
+' db   db db    db .88b  d88.  .d8b.  d888888b d8b   db      d888888b  .d88b.               
+' 88   88 88    88 88'YbdP`88 d8' `8b   `88'   888o  88      `~~88~~' .8P  Y8.      8. A .8 
+' 88ooo88 88    88 88  88  88 88ooo88    88    88V8o 88         88    88    88      `8.8.8' 
+' 88~~~88 88    88 88  88  88 88~~~88    88    88 V8o88         88    88    88        888   
+' 88   88 88b  d88 88  88  88 88   88   .88.   88  V888         88    `8b  d8'      .d'8`b. 
+' YP   YP ~Y8888P' YP  YP  YP YP   YP Y888888P VP   V8P         YP     `Y88P'       8' V `8 
+'                                                                                           
+'                                                                                           
+' 
+
+Humain ^-- Joueur
+Humain ^-- MaitreDuJeu
+' 
+'    d88b  .d88b.  db    db d88888b db    db d8888b.      d888888b  .d88b.               
+'    `8P' .8P  Y8. 88    88 88'     88    88 88  `8D      `~~88~~' .8P  Y8.      8. A .8 
+'     88  88    88 88    88 88ooooo 88    88 88oobY'         88    88    88      `8.8.8' 
+'     88  88    88 88    88 88~~~~~ 88    88 88`8b           88    88    88        888   
+' db. 88  `8b  d8' 88b  d88 88.     88b  d88 88 `88.         88    `8b  d8'      .d'8`b. 
+' Y8888P   `Y88P'  ~Y8888P' Y88888P ~Y8888P' 88   YD         YP     `Y88P'       8' V `8 
+'                                                                                        
+'                                                                                        
+' 
+
+Joueur "1" o-- "*" Personnage
+' 
+' .88b  d88.  .d8b.  d888888b d888888b d8888b. d88888b d8888b. db    db    d88b d88888b db    db      d888888b  .d88b.               
+' 88'YbdP`88 d8' `8b   `88'   `~~88~~' 88  `8D 88'     88  `8D 88    88    `8P' 88'     88    88      `~~88~~' .8P  Y8.      8. A .8 
+' 88  88  88 88ooo88    88       88    88oobY' 88ooooo 88   88 88    88     88  88ooooo 88    88         88    88    88      `8.8.8' 
+' 88  88  88 88~~~88    88       88    88`8b   88~~~~~ 88   88 88    88     88  88~~~~~ 88    88         88    88    88        888   
+' 88  88  88 88   88   .88.      88    88 `88. 88.     88  .8D 88b  d88 db. 88  88.     88b  d88         88    `8b  d8'      .d'8`b. 
+' YP  YP  YP YP   YP Y888888P    YP    88   YD Y88888P Y8888D' ~Y8888P' Y8888P  Y88888P ~Y8888P'         YP     `Y88P'       8' V `8 
+'                                                                                                                                    
+'                                                                                                                                    
+' 
+MaitreDuJeu "1" o-- "*" Cast
+MaitreDuJeu "1" o-- "*" Personnage
+' 
+'  .o88b.  .d8b.  .d8888. d888888b      d888888b  .d88b.               
+' d8P  Y8 d8' `8b 88'  YP `~~88~~'      `~~88~~' .8P  Y8.      8. A .8 
+' 8P      88ooo88 `8bo.      88            88    88    88      `8.8.8' 
+' 8b      88~~~88   `Y8b.    88            88    88    88        888   
+' Y8b  d8 88   88 db   8D    88            88    `8b  d8'      .d'8`b. 
+'  `Y88P' YP   YP `8888Y'    YP            YP     `Y88P'       8' V `8 
+'                                                                      
+'                                                                      
+' 
+Cast "*" o-- "*" Joueur
+' 
+'  .o88b.  .d88b.  d8b   db d8b   db  .d8b.  d888888b .d8888. .d8888.  .d8b.  d8b   db  .o88b. d88888b .d8888.      d888888b  .d88b.               
+' d8P  Y8 .8P  Y8. 888o  88 888o  88 d8' `8b   `88'   88'  YP 88'  YP d8' `8b 888o  88 d8P  Y8 88'     88'  YP      `~~88~~' .8P  Y8.      8. A .8 
+' 8P      88    88 88V8o 88 88V8o 88 88ooo88    88    `8bo.   `8bo.   88ooo88 88V8o 88 8P      88ooooo `8bo.           88    88    88      `8.8.8' 
+' 8b      88    88 88 V8o88 88 V8o88 88~~~88    88      `Y8b.   `Y8b. 88~~~88 88 V8o88 8b      88~~~~~   `Y8b.         88    88    88        888   
+' Y8b  d8 `8b  d8' 88  V888 88  V888 88   88   .88.   db   8D db   8D 88   88 88  V888 Y8b  d8 88.     db   8D         88    `8b  d8'      .d'8`b. 
+'  `Y88P'  `Y88P'  VP   V8P VP   V8P YP   YP Y888888P `8888Y' `8888Y' YP   YP VP   V8P  `Y88P' Y88888P `8888Y'         YP     `Y88P'       8' V `8 
+'                                                                                                                                                  
+'                                                                                                                                                  
+' 
+Connaissances ^-- Competence
+Connaissances ^-- Stances
+Connaissances ^-- Metier
+Connaissances ^-- Magie
+Connaissances ^-- Langue
+' 
+' d8888b. d88888b d8888b. .d8888.  .d88b.  d8b   db d8b   db  .d8b.   d888b  d88888b      d888888b  .d88b.               
+' 88  `8D 88'     88  `8D 88'  YP .8P  Y8. 888o  88 888o  88 d8' `8b 88' Y8b 88'          `~~88~~' .8P  Y8.      8. A .8 
+' 88oodD' 88ooooo 88oobY' `8bo.   88    88 88V8o 88 88V8o 88 88ooo88 88      88ooooo         88    88    88      `8.8.8' 
+' 88~~~   88~~~~~ 88`8b     `Y8b. 88    88 88 V8o88 88 V8o88 88~~~88 88  ooo 88~~~~~         88    88    88        888   
+' 88      88.     88 `88. db   8D `8b  d8' 88  V888 88  V888 88   88 88. ~8~ 88.             88    `8b  d8'      .d'8`b. 
+' 88      Y88888P 88   YD `8888Y'  `Y88P'  VP   V8P VP   V8P YP   YP  Y888P  Y88888P         YP     `Y88P'       8' V `8 
+'                                                                                                                        
+'                                                                                                                        
+' 
+Personnage "*" o-- "6" Stat 
+Personnage "*" o-- "4" Jauge 
+Personnage "*" o-- "7" Stat 
+
+@enduml
