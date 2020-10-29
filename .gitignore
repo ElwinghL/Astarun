@@ -62,4 +62,6 @@ typings/
 .next
 
 #Documentation
-Doc/
+Doc/*
+!Doc/class*
+!Doc/*.plantuml

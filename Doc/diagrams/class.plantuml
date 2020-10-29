@@ -19,6 +19,7 @@ class Joueur {
 
 class Cast {
 	+ nom
+	+ id
 }
 
 class Personnage {
@@ -53,6 +54,11 @@ together {
 		- points 
 	}
 
+	class Saves {
+		+state
+		+stat2
+	}
+
 	class Jauge {
 		+ nom
 		+ valeur
@@ -62,7 +68,7 @@ together {
 	}
 }
 
-abstract class Connaissances {
+abstract class Connaissance {
 	+ nom
 	+ niveau
 	+ description
@@ -93,6 +99,9 @@ package "" as pckgConn <<Rectangle>> {
 		- calcPoints()
 	}
 
+	class EcoleDeMagie {
+	}
+
 	class Magie {
 		+ elem
 		- calcPoints()
@@ -106,7 +115,8 @@ package "" as pckgConn <<Rectangle>> {
 ' 88booo.   .88.   88.     88  V888 db   8D 
 ' Y88888P Y888888P Y88888P VP   V8P `8888Y' 
 '                                           
-'                                           
+'                   
+Resistance ^-- Saves                        
 ' 
 ' 
 ' db   db db    db .88b  d88.  .d8b.  d888888b d8b   db      d888888b  .d88b.               
@@ -165,7 +175,7 @@ Cast "*" o-- "*" Joueur
 '                                                                                                                                                  
 '                                                                                                                                                  
 '
-Connaissances ^-- pckgConn
+Connaissance ^-- pckgConn
 
 Competence "*" o-- "0..2" Stat
 
@@ -182,6 +192,7 @@ Competence "*" o-- "0..2" Stat
 Personnage "*" o-- "6" Stat 
 Personnage "*" o-- "4" Jauge 
 Personnage "*" o-- "7" Resistance
+Personnage "*" o-- "3" Saves
 Personnage "*" -- "1" Race
 ' 
 ' d8888b. d88888b d8888b. .d8888.  .d88b.  d8b   db d8b   db  .d8b.   d888b  d88888b      d888888b  .d88b.        .o88b.  .d88b.  d8b   db d8b   db  .d8b.  d888888b .d8888. .d8888.  .d8b.  d8b   db  .o88b. d88888b .d8888. 
@@ -198,5 +209,18 @@ Personnage "*" o-- "*" Competence
 Personnage "*" o-- "*" Metier
 Personnage "*" o-- "*" Stances
 Personnage "*" o-- "*" Magie
+Personnage "*" o-- "*" EcoleDeMagie
+
+' 
+' .88b  d88.  .d8b.   d888b  d888888b d88888b      d888888b  .d88b.       db    db 
+' 88'YbdP`88 d8' `8b 88' Y8b   `88'   88'          `~~88~~' .8P  Y8.      `8b  d8' 
+' 88  88  88 88ooo88 88         88    88ooooo         88    88    88       `8bd8'  
+' 88  88  88 88~~~88 88  ooo    88    88~~~~~         88    88    88       .dPYb.  
+' 88  88  88 88   88 88. ~8~   .88.   88.             88    `8b  d8'      .8P  Y8. 
+' YP  YP  YP YP   YP  Y888P  Y888888P Y88888P         YP     `Y88P'       YP    YP 
+'                                                                                  
+'                                                                                  
+' 
+Magie "*" o-- "1" EcoleDeMagie
 
 @enduml
