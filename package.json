@@ -4,7 +4,7 @@
   "description": "RPG",
   "main": "index.js",
   "scripts": {
-    "install": "npm install",
+    "start": "npm install",
     "generate-graph": "puml generate ./Doc/diagrams/class.plantuml -o ./Doc/diagrams/class/astarun.png & puml generate ./Doc/diagrams/class.plantuml -o ./Doc/diagrams/class/astarun.svg",
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate-docs": "jsdoc -c jsdoc.json"
