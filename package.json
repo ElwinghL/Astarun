@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm install",
+    "start_serveur": "node serveur.js",
     "generate-graph": "puml generate ./Doc/diagrams/class.plantuml -o ./Doc/diagrams/class/astarun.png & puml generate ./Doc/diagrams/class.plantuml -o ./Doc/diagrams/class/astarun.svg",
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate-docs": "jsdoc -c jsdoc.json"
@@ -20,8 +21,14 @@
   },
   "homepage": "https://github.com/ElwinghL/Astarun#readme",
   "dependencies": {
+    "bootstrap": "^4.5.3",
     "docdash": "^1.1.1",
-    "node-plantuml": "^0.8.1"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.2",
+    "node-plantuml": "^0.8.1",
+    "serve-favicon": "^2.5.0",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "jsdoc": "^3.6.6"

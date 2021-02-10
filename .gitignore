@@ -65,3 +65,6 @@ typings/
 Doc/*
 !Doc/class*
 !Doc/*.plantuml
+
+# Environement variable
+.env
